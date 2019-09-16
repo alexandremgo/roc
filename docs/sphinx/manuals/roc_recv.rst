@@ -38,6 +38,7 @@ Options
 -1, --oneshot             Exit when last connected client disconnects (default=off)
 --poisoning               Enable uninitialized memory poisoning (default=off)
 --beeping                 Enable beeping on packet loss  (default=off)
+--miface                  Multicast interface address on which to join the multicast group
 
 Output
 ------
@@ -131,6 +132,24 @@ Listen on two ports on a particular interface:
 .. code::
 
     $ roc-recv -vv -s rtp+rs8m:192.168.0.3:10001 -r rs8m:192.168.0.3:10002
+
+Listen on two ports on a particular multicast address (but not join to a multicast group):
+
+.. code::
+
+    $ roc-recv -vv -s rtp+rs8m:225.1.2.3:10001 -r rs8m:225.1.2.3:10002
+
+Listen on two ports on a particular multicast address and join to a multicast group on all interfaces:
+
+.. code::
+
+    $ roc-recv -vv -s rtp+rs8m:225.1.2.3:10001 -r rs8m:225.1.2.3:10002 --miface 0.0.0.0
+
+Listen on two ports on a particular multicast address and join to a multicast group on a particular interface:
+
+.. code::
+
+    $ roc-recv -vv -s rtp+rs8m:225.1.2.3:10001 -r rs8m:225.1.2.3:10002 --miface 192.168.0.3
 
 Output to the default ALSA device:
 
